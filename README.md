@@ -1,30 +1,49 @@
-# upvfab_design_tools
+# Laboratory 2. Couplers
 
-Small Python library for photonic waveguide/coupler mode analysis and EME propagation, extracted from the lab notebook workflow.
+## Prerequisites (Windows + WSL)
 
-## Install (editable)
+- Windows 10/11 with WSL 2 enabled.
+- A Linux distribution installed via WSL (e.g., Ubuntu 22.04).
+- VS Code with the WSL extension installed.
+- Python 3.10+ available inside WSL.
 
-```bash
-pip install -e .
+If you have not configured WSL yet, follow the official Microsoft setup guide and then open VS Code connected to WSL.
+
+## Open the project
+
+1. Open a terminal.
+2. Fork the repo using GitHub Web.
+3. Navigate to the repo folder (or clone it):
+	- `git clone <your-repo-url>`
+	- `cd pic-upv-lab2`
+4. Open the folder in VS Code.
+
+## Create and select a Python environment
+
+From the VS Code window:
+
+1. Ensure `uv` is installed.
+2. Sync dependencies from `pyproject.toml`:
+	- `uv sync`
+3. Select the interpreter in VS Code:
+	- Command Palette -> Python: Select Interpreter -> choose the `.venv`
+	  created by `uv` (if prompted).
+
+## Install dependencies
+
+Use the repo's `pyproject.toml` via `uv`:
+
+```
+uv sync
 ```
 
-## Main API
+## Run the notebook
 
-```python
-from upvfab_design_tools import (
-    MMI_EME,
-    DC_EME,
-    waveguide,
-    waveguide_array,
-    my_plot_mode,
-)
-```
+1. Open the notebook in VS Code:
+	- `COUPLERS_Student.ipynb`
+2. Select the kernel named `pic-upv-lab2` (or the `.venv` you created).
+3. Run the cells top-to-bottom.
 
-## Notebook Migration
+## Troubleshooting
 
-In `20_COUPLERS_v2025_Student.ipynb`, replace local class/function definition cells with imports from `upvfab_design_tools`.
-
-## Notes
-
-- API keeps compatibility aliases like `waveguide_Array`.
-- The package includes light bug fixes from the original script while preserving behavior.
+- Email: camilo.cano@upv.es
