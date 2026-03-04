@@ -33,12 +33,22 @@ class MMI_EME:
         VERBOSE=False,
         ENABLE_MODE_PLOTS=False,
         ENABLE_MMI_PLOTS=False,
+        wg_type="deep",           
+        etch_fraction=0.5,        
     ):
         self.name = name
         self.dim = dim
         self.wvl = wvl
         self.mat_core = mat_core
         self.mat_cladd = mat_cladd
+        self.wg_type = wg_type
+        self.etch_fraction = etch_fraction
+
+        if self.wg_type == "shallow":
+            delta_n = self.etch_fraction * (self.mat_core - self.mat_cladd)
+            self.mat_core = self.mat_cladd + delta_n
+    
+
         self.polarization = polarization
         self.n_IN = n_IN
         self.IN_WVG_positions = list(IN_WVG_positions)
