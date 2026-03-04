@@ -471,8 +471,6 @@ class DC_EME(MMI_EME):
 
         self.MMI_modes, self.MMI_basis, XY, centers = waveguide_array(
             wg_width=self.DC_wg_width,
-            wg_depth=self.DC_core_depth,   # <- asegúrate de pasar depth
-            wg_index_core=self.mat_core,   # <- asegúrate de pasar mat_core
             wvl=self.wvl,
             num_modes=self.MMI_num_modes,
             XY=self.XY,
