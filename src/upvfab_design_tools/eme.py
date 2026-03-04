@@ -465,8 +465,9 @@ class DC_EME(MMI_EME):
         DC_N_waveguides=2,
         DC_wg_width=1.0,
         DC_wg_gap=0.8,
+        **kwargs   
     ):
-        super().__init__(name=name)
+        super().__init__(name=name, **kwargs)  
         self.DC_N_waveguides = DC_N_waveguides
         self.DC_wg_width = DC_wg_width
         self.DC_wg_gap = DC_wg_gap
