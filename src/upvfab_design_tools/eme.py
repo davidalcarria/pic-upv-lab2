@@ -33,12 +33,22 @@ class MMI_EME:
         VERBOSE=False,
         ENABLE_MODE_PLOTS=False,
         ENABLE_MMI_PLOTS=False,
+        wg_type="deep",           
+        etch_fraction=0.5,        
     ):
         self.name = name
         self.dim = dim
         self.wvl = wvl
         self.mat_core = mat_core
         self.mat_cladd = mat_cladd
+        self.wg_type = wg_type
+        self.etch_fraction = etch_fraction
+
+        if self.wg_type == "shallow":
+            delta_n = self.etch_fraction * (self.mat_core - self.mat_cladd)
+            self.mat_core = self.mat_cladd + delta_n
+    
+
         self.polarization = polarization
         self.n_IN = n_IN
         self.IN_WVG_positions = list(IN_WVG_positions)
@@ -455,8 +465,9 @@ class DC_EME(MMI_EME):
         DC_N_waveguides=2,
         DC_wg_width=1.0,
         DC_wg_gap=0.8,
+        **kwargs   
     ):
-        super().__init__(name=name)
+        super().__init__(name=name, **kwargs)  
         self.DC_N_waveguides = DC_N_waveguides
         self.DC_wg_width = DC_wg_width
         self.DC_wg_gap = DC_wg_gap
@@ -471,8 +482,6 @@ class DC_EME(MMI_EME):
 
         self.MMI_modes, self.MMI_basis, XY, centers = waveguide_array(
             wg_width=self.DC_wg_width,
-            wg_depth=self.DC_core_depth,   # <- asegúrate de pasar depth
-            wg_index_core=self.mat_core,   # <- asegúrate de pasar mat_core
             wvl=self.wvl,
             num_modes=self.MMI_num_modes,
             XY=self.XY,
